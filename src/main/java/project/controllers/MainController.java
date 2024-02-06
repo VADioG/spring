@@ -34,10 +34,14 @@ public class MainController {
         return "addPage";
     }
     @PostMapping("/main/add")
-    public String sumbitAddCat(@RequestParam("name") String name, @RequestParam("age") int age,@RequestParam("description") String description, @RequestParam(value = "image") MultipartFile image, Model model) throws IOException {
-        byte[] bytes = image.getBytes();
-        Cat cat = new Cat(name, age, description, bytes);
-        catsDataService.addCat(cat);
+    public String submitAddCat(@RequestParam("name") String name, @RequestParam("age") int age,@RequestParam("description") String description, @RequestParam(value = "image") MultipartFile image, Model model) throws IOException {
+        if (!image.isEmpty())
+        {
+            byte[] bytes = image.getBytes();
+            Cat cat = new Cat(name, age, description, bytes);
+            catsDataService.addCat(cat);
+        }
+
         return "redirect:/main";
     }
 }

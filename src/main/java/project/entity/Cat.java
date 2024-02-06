@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.engine.jdbc.env.internal.LobTypes;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.sql.Blob;
 import java.util.Base64;
 
@@ -42,7 +43,7 @@ public class Cat {
 
     public String getConvertImage() throws UnsupportedEncodingException {
         byte[] encodeBase64 = Base64.getEncoder().encode(image);
-        return new String(encodeBase64, "UTF-8");
+        return new String(encodeBase64, StandardCharsets.UTF_8);
     }
     public byte[] getImage() {
 
