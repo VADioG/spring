@@ -18,10 +18,9 @@ public class CatsDataService {
         return (List<Cat>) catRepository.findAll();
     }
     @Transactional
-    public Cat addCat(Cat cat)
+    public void addCat(Cat cat)
     {
         catRepository.save(cat);
-        return cat;
     }
 
 }

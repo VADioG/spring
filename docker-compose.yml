@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+ postgresqldb:
+  image: 'postgres:16'
+  container_name: 'java-postgres2'
+  environment:
+    - 'POSTGRES_USER=postgres'
+    - 'POSTGRES_PASSWORD=vadiog1235670Z'
+    - 'POSTGRES_DB=spring'
+  ports:
+    - "5432:5432"
+
+
+ app:
+   build: ./
+   container_name: 'spring'
+   ports:
+     - "8080:8080"
+   depends_on:
+     - postgresqldb

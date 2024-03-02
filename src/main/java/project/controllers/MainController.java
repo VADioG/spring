@@ -5,24 +5,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 import project.entity.Cat;
-import project.repositories.CatRepository;
 import project.services.CatsDataService;
 
 import java.io.*;
-import java.util.Base64;
 import java.util.List;
 
 @Controller
-
 public class MainController {
 
     @Autowired
-    private CatsDataService catsDataService;
+    private  CatsDataService catsDataService;
+//    @Autowired
+//     public MainController(CatsDataService catsDataService)
+//    {
+//        this.catsDataService = catsDataService;
+//    }
+
+
 
     @GetMapping("/main")
-    public String mainPage (Model model) throws UnsupportedEncodingException {
+    public String mainPage (Model model) {
         List<Cat> cats = catsDataService.getAllCats();
         model.addAttribute("cats", cats);
         return "start";
@@ -38,6 +41,12 @@ public class MainController {
         if (!image.isEmpty())
         {
             byte[] bytes = image.getBytes();
+//            Cat cat = Cat.builder()
+//                    .name(name)
+//                    .age(age)
+//                    .description(description)
+//                    .image(bytes)
+//                    .build();
             Cat cat = new Cat(name, age, description, bytes);
             catsDataService.addCat(cat);
         }

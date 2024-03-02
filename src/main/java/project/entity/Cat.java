@@ -1,10 +1,49 @@
+//package project.entity;
+//
+//import jakarta.persistence.*;
+//import lombok.*;
+//
+//
+//import java.io.UnsupportedEncodingException;
+//import java.nio.charset.StandardCharsets;
+//import java.util.Base64;
+//@Data
+//@Builder
+//@Setter
+//@Getter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Entity
+//public class Cat {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private int id;
+//    @Column
+//    private String name;
+//    @Column
+//    private int age;
+//    @Column
+//    private String description;
+//    @Lob
+//    @Column(columnDefinition="longblob")
+//    private byte[] image;
+//
+//    public String getConvertImage()  {
+//        byte[] encodeBase64 = Base64.getEncoder().encode(image);
+//        return new String(encodeBase64, StandardCharsets.UTF_8);
+//    }
+//
+//
+//
+//}
 package project.entity;
 
 import jakarta.persistence.*;
-
+import org.hibernate.engine.jdbc.env.internal.LobTypes;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.sql.Blob;
 import java.util.Base64;
 
 @Entity
@@ -18,8 +57,7 @@ public class Cat {
     private int age;
     @Column
     private String description;
-    @Lob
-    @Column(columnDefinition="longblob")
+    @Column(columnDefinition="bytea")
     private byte[] image;
 
     public String getDescription() {
@@ -40,7 +78,7 @@ public class Cat {
         this.description = description;
     }
 
-    public String getConvertImage() throws UnsupportedEncodingException {
+    public String getConvertImage() {
         byte[] encodeBase64 = Base64.getEncoder().encode(image);
         return new String(encodeBase64, StandardCharsets.UTF_8);
     }
