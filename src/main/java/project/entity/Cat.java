@@ -39,11 +39,9 @@
 package project.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.engine.jdbc.env.internal.LobTypes;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.sql.Blob;
+
 import java.util.Base64;
 
 @Entity

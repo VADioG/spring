@@ -15,7 +15,7 @@ public class CatsDataService {
     public List<Cat> getAllCats()
     {
 
-        return (List<Cat>) catRepository.findAll();
+        return  catRepository.findAll();
     }
     @Transactional
     public void addCat(Cat cat)
